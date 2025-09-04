@@ -4,8 +4,11 @@
 
 import numpy as np
 
-
 # 리스트 대신 배열을 사용하는 이유
-# list1 = [1,2,"3",4,5]
-# arr1 = np.array(list1, dtype=int)
-# print(arr1)
+list1 = [1,2,"3",4,5]
+arr1 = np.array(list1) # 파이썬 리스트를 넘파이 배열로 변환
+print(list1, type(list1))
+print(arr1, type(arr1))
+
+arr2 = np.array([[1,2,3],[4,5,6]])
+print(arr2, type(arr2))
