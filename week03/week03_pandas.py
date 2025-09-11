@@ -52,4 +52,13 @@ df12 = df4.nlargest(2, 'temp')
 # print(df12)
 
 df13 = df4.head(3)
-print(df13)
+# print(df13)
+
+
+# print(df4[['date','temp']])
+
+# print(df4['temp'])
+
+# print(df4.iloc[1:3])
+
+# print(df4.iloc[:,[0,2]])
