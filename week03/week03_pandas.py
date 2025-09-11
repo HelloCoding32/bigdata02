@@ -18,22 +18,29 @@ df3 = pd.melt(df2).rename(columns={'variable' : 'var', 'value' : 'val'}).query('
 
 
 df4 = pd.DataFrame({
-    '날짜' : ['2025-09-11', '2025-09-11', '2025-09-12','2025-09-12'],
-    '도시' : ['서울','안양','서울','안양'],
-    '온도' : [23,22,24,26]
+    'date' : ['2025-09-11', '2025-09-11', '2025-09-12','2025-09-13'],
+    'city' : ['서울','안양','서울','안양'],
+    'temp' : [23,22,24,22]
 }, index =[1, 2, 3,4])
 
 # print(df4)
 
-df5 = df4.pivot(index='날짜',columns='도시',values='온도')
-# print(df5)
+df5 = df4.pivot(index='date',columns='city',values='temp')
+print(df5)
 
 
-df6 = df4.sort_values('온도') # ascending.
-df7 = df4.sort_values('온도',ascending=False) # desending.
+df6 = df4.sort_values('temp') # ascending.
+df7 = df4.sort_values('temp',ascending=False) # desending.
 
-print(df6)
-print(df7)
+# print(df6)
+# print(df7)
 
-df8 = df4.drop('도시')
+df8 = df4.drop(columns=['date','city']) # drop specific columns
+# print(df8)
 
+
+df9 = df4[df4.temp <= 23]
+# print(df9)
+
+df10 = df4.duplicated()
+# print(df10)
