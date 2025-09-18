@@ -4,8 +4,12 @@ import seaborn as sns
 
 mpg = sns.load_dataset("mpg")
 # print(mpg.isnull().sum())
-# print(mpg.isnull())
-# print(mpg[mpg['horsepower'].isnull() == True])
 # print(mpg[mpg['horsepower'].isnull()])
-mpg_nan = mpg[mpg['horsepower'].isnull()]
-print(mpg_nan.loc[:,'mpg':'horsepower'])
+# 결측치 처리 #1
+# mpg = mpg.dropna() # mpg.dropna(inplace=True)
+# print(mpg[mpg['horsepower'].isnull()])
+
+# 결측치 처리 #2
+mpg = mpg.fillna(mpg['horsepower'].mean())
+print(mpg.fillna(mpg['horsepower'].isnull()))
+# print(mpg)
