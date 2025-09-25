@@ -2,3 +2,5 @@
 *.exe
 *.db
 *.DS_Store
+*.pdf
+*.csv
