@@ -3,8 +3,8 @@ import matplotlib.pyplot as plt
 
 
 df = sns.load_dataset('titanic')
-print(df.groupby("sex")["survived"].mean())
-
+# print(df.groupby("sex")["survived"].mean())
+print(df.groupby(['sex','class'])['survived'].agg(['mean','max']))
 plt.figure(figsize=(8, 4))
 sns.countplot(data=df, x="sex", hue="survived")
 plt.legend(loc='upper right', title="Survived",labels=["no","yes"])
