@@ -7,6 +7,11 @@ import seaborn as sns
 wh = pd.read_csv('wh.csv')
 # print(wh.describe())
 # print(wh.query('Weight > 350'))
-print(wh[wh['Weight'] > 390])
-# sns.scatterplot(x='Weight',y='Height',data=wh)
-# plt.show()
+# new_wh = wh.query('Weight < 390')
+# print(new_wh.info())
+
+criteria = wh['Weight'].quantile(0.9999) # 99.99% 이상인 데이터 지점
+print(criteria) # 약 255.9 파운드
+print(round(criteria,1)) # 255.9 소수점 1번째 자리
+new_wh = wh[wh['Weight'] < criteria]
+print(new_wh.info())
