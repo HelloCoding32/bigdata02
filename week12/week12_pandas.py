@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy.stats as stats
 
+usc = pd.read_csv('us_corona.csv')
+# print(usc.info())
+# print(usc.describe())
 
-s = pd.Series([1,np.nan,3, np.nan,5,6,np.nan,np.nan,9])
-print(s)
-# 내삽(보관) interpolate
-print(s.interpolate(method='spline', order=1,limit=2 ,limit_direction='both'))
+usc.fillna('Daelim',inplace=True)
+print(usc.query('Admin2 == "Daelim"'))
