@@ -1,22 +1,11 @@
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+import scipy.stats as stats
 
-# 다음주 apple 주가 데이터셋 하기 라고 말하기
 
-wh = pd.read_csv('wh.csv')
-# print(wh.describe())
-# print(wh.query('Weight > 350'))
-# new_wh = wh.query('Weight < 390')
-# print(new_wh.info())
-#
-criteria = wh['Weight'].quantile(0.75) # 99.99% 이상인 데이터 지점
-# print(criteria) # 약 255.9 파운드
-# print(round(criteria,1)) # 255.9 소수점 1번째 자리
-new_wh = wh[wh['Weight'] < criteria]
-print(new_wh.info())
-# print(new_wh.describe())
-sns.scatterplot(x='Height',y='Weight',data=new_wh)
-plt.show()
-# print(wh[wh['Weight'] > criteria])
-# print(wh[wh['Weight'] > criteria].index)
+s = pd.Series([1,np.nan,3, np.nan,5,6,np.nan,np.nan,9])
+print(s)
+# 내삽(보관) interpolate
+print(s.interpolate(method='spline', order=1,limit=2 ,limit_direction='both'))
