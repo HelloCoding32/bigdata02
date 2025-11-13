@@ -14,4 +14,7 @@ usc = usc.set_index('Date').sort_values('Date') # index -> date and sorted date 
 # print(usc['2021-09' : '2021-10']) # slicing
 # print(usc.reset_index().set_index('Province/State').sort_index())
 usc = usc.reset_index().set_index('Province/State').sort_index()
-print(len(usc.index.unique()))
+# print(len(usc.index.unique()))
+
+# print(usc['Arizona' : 'California'])
+print(usc['Ar' : 'Di'])
