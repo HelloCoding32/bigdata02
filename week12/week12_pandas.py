@@ -7,14 +7,11 @@ import scipy.stats as stats
 # 특정 기간동안 미국에서 코로나19 바이러스 확진자 수를 지역으로 나눠 정리한 데이터
 usc = pd.read_csv('us_corona.csv')
 usc['Date'] = pd.to_datetime(usc['Date']) # object -> datetime
-# print(usc.info())
 usc = usc.set_index('Date').sort_values('Date') # index -> date and sorted date ascending
-# print(usc)
+states = usc['Province/State'].unique()[:5]
+# print(states)
 
-# print(usc['2021-09' : '2021-10']) # slicing
-# print(usc.reset_index().set_index('Province/State').sort_index())
-usc = usc.reset_index().set_index('Province/State').sort_index()
-# print(len(usc.index.unique()))
+usc = usc[usc['Province/State'].isin(states)]
 
-# print(usc['Arizona' : 'California'])
-print(usc['Ar' : 'Di'])
+# 6개월 단위 그룹으로 5개주(상위) 코로나19 발병 횟수 평균 값
+print(usc.groupby([pd.Grouper(freq='6m'), 'Province/State']))
