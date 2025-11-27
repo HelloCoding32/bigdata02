@@ -4,24 +4,25 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 pr = pd.read_csv('product.csv')
-# print(pr.info())
-# print(pr.head())
-# print(pr.tail())
-# print(pr.describe())
-# print(pr['operator'].unique())
-# print(pr['process'].unique())
-# print(pr['factory'].unique())
-
 pr['path'] = pr.groupby('product_id')['operator'].transform(
     lambda x : '_'.join(x)
 )
-# print(pr.head(6))
-# print(pr.tail(6))
-
 pr['path'] = pr['factory'] + '_' + pr['path']
-# print(pr.head(6))
 pr = pr.drop_duplicates('product_id')
-# print(pr)
 pr = pr[['date','product_id','passfail','path']]
+pr['factory'] = pr['path'].map(lambda x:x[0:2]) # 팩토리 코드만 추출
+pr['path'] = pr['path'].map(lambda x:x[3:]) # 3열 부터 끝까지 추출
+pr['path'] = pr['path'].map(lambda x:x.split('_'))
+pr = pr.explode('path')
+# print(pr)
+process_map = {
+    '1' : 'p1',
+    '2' : 'p1',
+    'V' : 'p2',
+    'W' : 'p2',
+    'X' : 'p3',
+    'Y' : 'p3'
+}
+pr['process'] = pr['path'].map(process_map)
+pr = pr.rename({'path' : 'operator'}, axis = 1)
 print(pr)
-print(pr.groupby('passfail')['path'].value_counts())
